@@ -44,9 +44,12 @@ def add_task(tasks, task):
 list_of_task = []
 undo_task_list = []
 
-with open('list_task.json', 'r') as file:
-    tasks = json.load(file)
-    list_of_task = tasks
+try:
+    with open('list_task.json', 'r') as file:
+        tasks = json.load(file)
+        list_of_task = tasks
+except FileNotFoundError:
+    ...
 
 while True:
     print('Comands: list, undo, redo, quit')
