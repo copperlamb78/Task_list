@@ -43,7 +43,9 @@ def add_task(tasks, task):
 list_of_task = []
 undo_task_list = []
 
-
+with open('list_task.json', 'r') as file:
+    tasks = json.load(file)
+    list_of_task = tasks
 
 while True:
     print('Comands: list, undo, redo, quit')
@@ -63,3 +65,11 @@ while True:
     command = commands.get(task) if commands.get(task) is not None else \
         commands['add']
     command()
+    
+    with open('list_task.json', 'w') as file:
+        json.dump(
+            list_of_task,
+            file,
+            indent= 2
+        )
+    
